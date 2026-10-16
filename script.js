@@ -24,7 +24,7 @@ let photos = (Array.isArray(window.MUM_PHOTOS)
   : []).map(path => ({
     url: path,
     name: path.split("/").pop(),
-    caption: "Un joli souvenir pour une journée spéciale ✨"
+    caption: "Un joli souvenir pour une journée spéciale ✨\nJE T'AIME ÉNORMEMENT MUM❤️"
   }));
 let currentIndex = 0;
 let slideshowTimer = null;
@@ -131,6 +131,7 @@ function showPhoto(index) {
 
   slideCaption.textContent =
     photo.caption || "Un joli souvenir pour une journée spéciale ✨";
+    slideCaption.style.whiteSpace = "pre-line";
 
   renderDots();
 }
