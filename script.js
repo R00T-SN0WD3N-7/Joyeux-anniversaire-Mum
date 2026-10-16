@@ -53,6 +53,8 @@ startButton.addEventListener("click", async () => {
   launchConfetti();
   welcome.classList.add("hidden");
   surprise.classList.remove("hidden");
+  showPhoto(0);
+  startSlideshow();
   await playMusic();
   surprise.scrollIntoView({ behavior: "smooth", block: "start" });
 });
