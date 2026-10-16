@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#fff8fb">
+  <meta name="description" content="Une jolie surprise d'anniversaire pour Mum.">
+  <title>Joyeux anniversaire Mum 💗</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  
+<!-- Décorations d'anniversaire -->
+<div class="birthday-decor" aria-hidden="true">
+  <span class="balloon balloon-one">🎈</span>
+  <span class="balloon balloon-two">🎂</span>
+  <span class="balloon balloon-three">🎈</span>
+  <span class="sparkle sparkle-one">✦</span>
+  <span class="sparkle sparkle-two">✧</span>
+  <span class="sparkle sparkle-three">✨</span>
+    <span class="sparkle sparkle-three">🎂</span>
+
+</div>
+
+<!-- Confettis affichés au clic -->
+<div id="confetti-container" aria-hidden="true"></div>
+
+<!-- Décorations florales -->
+<div class="floral-corner floral-top-left" aria-hidden="true">
+  <span>🌹</span><span>🌿</span><span>✨</span>
+</div>
+
+<div class="floral-corner floral-top-right" aria-hidden="true">
+  <span>✨</span><span>🌿</span><span>🎂</span>
+</div>
+
+<div class="floral-corner floral-bottom-left" aria-hidden="true">
+  <span>🌸</span><span>✨</span>
+</div>
+
+<div class="floral-corner floral-bottom-right" aria-hidden="true">
+  <span>🌹</span><span>🌿</span><span>✨</span>
+</div>
+
+<!-- Pétales décoratifs -->
+<div class="petal-layer" aria-hidden="true">
+  <span>🌸</span>
+  <span>🌷</span>
+  <span>✿</span>
+  <span>🌸</span>
+  <span>✧</span>
+  <span>🌷</span>
+</div>
+  <div class="ambient ambient-one"></div><div class="ambient ambient-two"></div>
+  <main class="page-shell">
+    <header class="topline"><span class="tiny-star">✦</span> UNE SURPRISE POUR TOI <span class="tiny-star">✦</span></header>
+
+    <section class="hero" id="welcome">
+      <div class="eyebrow"><span>✧</span> Un jour exceptionnel <span>✧</span></div>
+      <div class="ornament" aria-hidden="true">❀</div>
+      <h1>Joyeux anniversaire,<br><em>ma Mum</em> !</h1>
+      <p class="intro">Aujourd’hui, cette petite surprise est rien que pour toi…</p>
+      <div class="hero-rule"><span>♡</span></div>
+      <p class="hero-note">Un moment rempli de douceur, de belles pensées et de bénédictions.</p>
+      <button class="primary-button" id="startButton" type="button">
+        <span>Découvrir ma surprise</span><span class="button-arrow" aria-hidden="true">→</span>
+      </button>
+      <p class="audio-hint">♪ La musique commencera après ton clic</p>
+    </section>
+
+    <section class="surprise hidden" id="surprise" aria-live="polite">
+      <div class="section-heading">
+        <span class="eyebrow">Avec toute mon estime</span>
+        <h2>Un petit souvenir,<br><em>un grand sourire</em></h2>
+        <p>Quelques images pour célébrer cette belle journée.</p>
+      </div>
+
+      <div class="slideshow-card">
+        <div class="photo-frame">
+          <img id="slideImage" src="photos" alt="Souvenir de Mum">
+          <div class="photo-placeholder" id="photoPlaceholder">
+            <span class="placeholder-flower">✿</span>
+          </div>
+          <div class="photo-counter" id="photoCounter">0 / 0</div>
+        </div>
+        <div class="slide-caption" id="slideCaption">Les plus beaux souvenirs méritent d’être célébrés ✨</div>
+        <div class="slide-controls">
+          <button class="round-button" id="prevButton" aria-label="Photo précédente" type="button">‹</button>
+          <div class="dots" id="dots" aria-label="Choisir une photo"></div>
+          <button class="round-button" id="nextButton" aria-label="Photo suivante" type="button">›</button>
+        </div>
+        <div class="gallery-tools">
+          <label class="upload-button" for="photoInput"></label>
+          <input id="photoInput" type="file" accept="image/*" multiple>
+        </div>
+      </div>
+
+      <article class="message-card">
+        <div class="message-flower" aria-hidden="true">✿</div>
+        <div class="message-label">Un vœu du fond du cœur</div>
+        <h2>Joyeux anniversaire Mum !</h2>
+        <p class="blessing">Que Dieu te bénisse abondamment. <span aria-label="cœur et prière">❤️🙏🏽</span></p>
+        <div class="gold-divider"><span>✦</span></div>
+        <p class="signature">Ton fils de cœur <strong>❤️ NKS</strong></p>
+      </article>
+
+      <section class="music-player" aria-label="Contrôles de la musique">
+        <div class="music-disc" id="musicDisc" aria-hidden="true">♫</div>
+        <div class="music-copy"><strong>Une mélodie pour toi</strong><span id="musicStatus">Musique en pause</span></div>
+        <button class="music-toggle" id="musicToggle" type="button" aria-label="Mettre la musique en lecture">▶</button>
+      </section>
+      <p class="closing">Que cette nouvelle année de vie soit remplie de paix, de joie et de grâces. <span>✧</span></p>
+      <button class="replay-button" id="replayButton" type="button">↺ Revoir depuis le début</button>
+    </section>
+    <footer>Fait avec respect, tendresse et gratitude <span>♡</span></footer>
+  </main>
+
+  <!-- Place ton fichier de musique dans le dossier audio et nomme-le anniversaire.mp3 -->
+  <audio id="birthdayAudio" src="audio/PETIT BOZARD joyeux anniversaire.mp3" preload="auto" loop></audio>
+<script src="photos-list.js"></script>
+<script src="script.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
