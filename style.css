@@ -44,8 +44,24 @@ h1 em, h2 em { color: var(--rose); font-weight: 500; }
 .section-heading p { color: var(--muted); font-size: .9rem; line-height: 1.6; margin: 0 auto; max-width: 390px; }
 .slideshow-card { background: #fff; border: 1px solid #f0e2e5; padding: 12px; border-radius: 24px; box-shadow: 0 16px 48px #6e38440c; }
 .photo-frame { position: relative; overflow: hidden; border-radius: 16px; background: linear-gradient(145deg, #fff1f5, #f8f0e3); aspect-ratio: 4 / 3; display: grid; place-items: center; }
-.photo-frame img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; object-position: center center; opacity: 0; transition: opacity .45s ease;}
-.photo-frame img.loaded { opacity: 1; }
+.photo-frame .photo-layer {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center center;
+  opacity: 0;
+  transform: scale(1.045);
+  transition:
+    opacity 1s ease-in-out,
+    transform 1.4s ease-in-out;
+  will-change: opacity, transform;
+  z-index: 0;}
+.photo-frame .photo-layer.active {
+  opacity: 1;
+  transform: scale(1);
+  z-index: 1;}
 .photo-placeholder { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 8px; text-align: center; padding: 20px; color: #97777f; }
 .photo-placeholder strong { color: #7b505d; font-family: "Playfair Display", Georgia, serif; font-size: 1.25rem; }
 .photo-placeholder span:last-child { font-size: .75rem; max-width: 230px; line-height: 1.5; }
@@ -397,4 +413,26 @@ body::after {
   .balloon, .sparkle, .confetti-piece {
     animation: none !important;
   }
+}
+
+/* Transition élégante : fondu + léger zoom */
+#slideImage {
+  opacity: 0;
+  transform: scale(1.04);
+  transition:
+    opacity 0.7s ease-in-out,
+    transform 1s ease-in-out;
+  will-change: opacity, transform;
+}
+
+#slideImage.loaded {
+  opacity: 1;
+  transform: scale(1);
+}
+.photo-frame .photo-placeholder {
+  z-index: 2;
+}
+
+.photo-frame .photo-counter {
+  z-index: 3;
 }

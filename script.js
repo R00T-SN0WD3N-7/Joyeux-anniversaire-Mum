@@ -7,6 +7,9 @@ const musicStatus = document.getElementById("musicStatus");
 const musicDisc = document.getElementById("musicDisc");
 const photoInput = document.getElementById("photoInput");
 const slideImage = document.getElementById("slideImage");
+const slideImageNext = document.getElementById("slideImageNext");
+let activeImage = slideImage;
+let nextImage = slideImageNext;
 const placeholder = document.getElementById("photoPlaceholder");
 const photoCounter = document.getElementById("photoCounter");
 const dotsContainer = document.getElementById("dots");
@@ -55,6 +58,8 @@ startButton.addEventListener("click", async () => {
   surprise.classList.remove("hidden");
   showPhoto(0);
   startSlideshow();
+  showPhoto(0);
+  startSlideshow();
   await playMusic();
   surprise.scrollIntoView({ behavior: "smooth", block: "start" });
 });
@@ -85,34 +90,55 @@ function renderDots() {
 
 function showPhoto(index) {
   if (!photos.length) {
-    slideImage.classList.remove("loaded");
+    activeImage.classList.remove("active");
+    nextImage.classList.remove("active");
     placeholder.hidden = false;
     photoCounter.textContent = "0 / 0";
     dotsContainer.innerHTML = "";
-    slideCaption.textContent = "Les plus beaux souvenirs méritent d’être célébrés ✨";
+    slideCaption.textContent =
+      "Les plus beaux souvenirs méritent d’être célébrés ✨";
     return;
   }
+
   currentIndex = (index + photos.length) % photos.length;
-  slideImage.classList.remove("loaded");
-  slideImage.onload = () => {
-    slideImage.classList.add("loaded");
+
+  const photo = photos[currentIndex];
+  const imageToShow = nextImage;
+
+  imageToShow.onload = () => {
+    imageToShow.classList.add("active");
+    activeImage.classList.remove("active");
+
+    const oldImage = activeImage;
+    activeImage = imageToShow;
+    nextImage = oldImage;
+
     placeholder.hidden = true;
   };
-  slideImage.onerror = () => {
-    slideImage.classList.remove("loaded");
+
+  imageToShow.onerror = () => {
+    imageToShow.classList.remove("active");
     placeholder.hidden = false;
   };
-  slideImage.src = photos[currentIndex].url;
-  slideImage.alt = photos[currentIndex].name || `Photo souvenir ${currentIndex + 1}`;
-  photoCounter.textContent = `${currentIndex + 1} / ${photos.length}`;
-  slideCaption.textContent = photos[currentIndex].caption || "Un joli souvenir pour une journée spéciale ✨";
+
+  imageToShow.alt =
+    photo.name || `Photo souvenir ${currentIndex + 1}`;
+
+  imageToShow.src = photo.url;
+
+  photoCounter.textContent =
+    `${currentIndex + 1} / ${photos.length}`;
+
+  slideCaption.textContent =
+    photo.caption || "Un joli souvenir pour une journée spéciale ✨";
+
   renderDots();
 }
 
 function startSlideshow() {
   clearInterval(slideshowTimer);
   if (photos.length > 1) {
-    slideshowTimer = setInterval(() => showPhoto(currentIndex + 1), 4500);
+    slideshowTimer = setInterval(() => showPhoto(currentIndex + 1), 2500);
   }
 }
 
